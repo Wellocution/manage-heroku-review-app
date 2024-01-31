@@ -61,6 +61,8 @@ async function run() {
   };
 
   const createReviewApp = async () => {
+    const envs = JSON.parse(core.getInput("envs"));
+
     core.debug("init octokit");
     if (!process.env.GITHUB_TOKEN) {
       core.error(
@@ -107,6 +109,7 @@ async function run() {
             version,
           },
           pr_number,
+          environment: envs,
         },
       });
       core.debug(response);

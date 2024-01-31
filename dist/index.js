@@ -9184,6 +9184,8 @@ function run() {
             }
         });
         const createReviewApp = () => __awaiter(this, void 0, void 0, function* () {
+            const envs = JSON.parse(core.getInput("envs"));
+            core.info(`envs: ${JSON.stringify(envs)}`);
             core.debug("init octokit");
             if (!process.env.GITHUB_TOKEN) {
                 core.error("Couldn't connect to GitHub, make sure the GITHUB_TOKEN secret is set");
@@ -9220,9 +9222,10 @@ function run() {
                             version,
                         },
                         pr_number,
+                        environment: envs,
                     },
                 });
-                core.debug(response);
+                core.info(response);
                 core.info("Review App created");
             }
             catch (error) {

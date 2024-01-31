@@ -5,6 +5,9 @@ inputs:
     description: 'One of: "create" or "destroy"'
     required: true
     default: "create"
+  envs:
+    required: false
+    default: "{}"
 runs:
   using: "node12"
   main: "dist/index.js"
